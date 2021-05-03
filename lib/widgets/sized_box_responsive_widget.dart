@@ -48,7 +48,7 @@ class SizedBoxResponsive extends SizedBox {
   /// Creates a fixed size box. The [width] and [height] parameters can be null
   /// to indicate that the size of the box should not be constrained in
   /// the corresponding dimension.
-  SizedBoxResponsive({Key key, double width, double height, Widget child})
+  SizedBoxResponsive({Key? key, double? width, double? height, Widget? child})
       : super(
           key: key,
           child: child,
@@ -57,7 +57,7 @@ class SizedBoxResponsive extends SizedBox {
         );
 
   /// Creates a box that will become as large as its parent allows.
-  const SizedBoxResponsive.expand({Key key, Widget child})
+  const SizedBoxResponsive.expand({Key? key, Widget? child})
       : super(
           key: key,
           child: child,
@@ -66,15 +66,15 @@ class SizedBoxResponsive extends SizedBox {
         );
 
   /// Creates a box that will become as small as its parent allows.
-  const SizedBoxResponsive.shrink({Key key, Widget child})
+  const SizedBoxResponsive.shrink({Key? key, Widget? child})
       : super(key: key, child: child, width: 0, height: 0);
 
   /// Creates a box with the specified size.
-  SizedBoxResponsive.fromSize({Key key, Widget child, Size size})
+  SizedBoxResponsive.fromSize({Key? key, Widget? child, Size? size})
       : super(
           key: key,
           child: child,
-          width: size?.width == null ? null : size.width.w,
-          height: size?.height == null ? null : size.height.h,
+          width: size?.width == null ? null : size!.width.w,
+          height: size?.height == null ? null : size!.height.h,
         );
 }

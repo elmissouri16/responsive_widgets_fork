@@ -5,10 +5,10 @@ homepage: https://github.com/LucazzP
 repository: https://github.com/LucazzP/responsive_widgets
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  flutter_screenutil: ^1.1.0
+  flutter_screenutil: ^5.0.0
   flutter:
     sdk: flutter
 

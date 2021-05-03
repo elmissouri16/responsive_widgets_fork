@@ -12,10 +12,10 @@ part 'widgets/sized_box_responsive_widget.dart';
 
 class ResponsiveWidgets {
   static Widget builder({
-    double height,
-    double width,
+    double? height,
+    double? width,
     bool allowFontScaling = false,
-    Widget child,
+    Widget? child,
   }) {
     return LayoutBuilder(
       builder: (context, constrains) {
@@ -25,22 +25,22 @@ class ResponsiveWidgets {
           width: width,
           allowFontScaling: allowFontScaling,
         );
-        return child;
+        return child!;
       },
     );
   }
 
   static void init(
     BuildContext context, {
-    double height,
-    double width,
+    double? height,
+    double? width,
     bool allowFontScaling = false,
   }) {
     ScreenUtil.init(
-      context,
-      height: height,
-      width: width,
-      allowFontScaling: allowFontScaling,
-    );
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: Size(360, 690),
+        orientation: Orientation.portrait);
   }
 }

@@ -9,20 +9,20 @@ class TextResponsive extends Text {
   /// The text to display as a [InlineSpan].
   ///
   /// This will be null if [data] is provided instead.
-  final InlineSpan textSpan;
+  final InlineSpan? textSpan;
 
   /// If non-null, the style to use for this text.
   ///
   /// If the style's "inherit" property is true, the style will be merged with
   /// the closest enclosing [DefaultTextStyle]. Otherwise, the style will
   /// replace the closest enclosing [DefaultTextStyle].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// {@macro flutter.painting.textPainter.strutStyle}
-  final StrutStyle strutStyle;
+  final StrutStyle? strutStyle;
 
   /// How the text should be aligned horizontally.
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
 
   /// The directionality of the text.
   ///
@@ -37,7 +37,7 @@ class TextResponsive extends Text {
   /// its left.
   ///
   /// Defaults to the ambient [Directionality], if any.
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Used to select a font when the same Unicode character can
   /// be rendered differently, depending on the locale.
@@ -46,15 +46,15 @@ class TextResponsive extends Text {
   /// is inherited from the enclosing app with `Localizations.localeOf(context)`.
   ///
   /// See [RenderParagraph.locale] for more information.
-  final Locale locale;
+  final Locale? locale;
 
   /// Whether the text should break at soft line breaks.
   ///
   /// If false, the glyphs in the text will be positioned as if there was unlimited horizontal space.
-  final bool softWrap;
+  final bool? softWrap;
 
   /// How visual overflow should be handled.
-  final TextOverflow overflow;
+  final TextOverflow? overflow;
 
   /// The number of font pixels for each logical pixel.
   ///
@@ -64,7 +64,7 @@ class TextResponsive extends Text {
   /// The value given to the constructor as textScaleFactor. If null, will
   /// use the [MediaQueryData.textScaleFactor] obtained from the ambient
   /// [MediaQuery], or 1.0 if there is no [MediaQuery] in scope.
-  final double textScaleFactor;
+  final double? textScaleFactor;
 
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
@@ -77,7 +77,7 @@ class TextResponsive extends Text {
   /// an explicit number for its [DefaultTextStyle.maxLines], then the
   /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
   /// widget directly to entirely override the [DefaultTextStyle].
-  final int maxLines;
+  final int? maxLines;
 
   /// An alternative semantics label for this text.
   ///
@@ -91,10 +91,10 @@ class TextResponsive extends Text {
   /// ```dart
   /// Text(r'$$', semanticsLabel: 'Double dollars')
   /// ```
-  final String semanticsLabel;
+  final String? semanticsLabel;
 
   /// {@macro flutter.painting.textPainter.textWidthBasis}
-  final TextWidthBasis textWidthBasis;
+  final TextWidthBasis? textWidthBasis;
 
   /// Creates a text widget.
   ///
@@ -104,7 +104,7 @@ class TextResponsive extends Text {
   /// The [data] parameter must not be null.
   const TextResponsive(
     this.data, {
-    Key key,
+    Key? key,
     this.style,
     this.strutStyle,
     this.textAlign,
@@ -116,11 +116,7 @@ class TextResponsive extends Text {
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,
-  })  : assert(
-          data != null,
-          'A non-null String must be provided to a Text widget.',
-        ),
-        textSpan = null,
+  })  : textSpan = null,
         super(data,
             key: key,
             style: style,
@@ -138,11 +134,11 @@ class TextResponsive extends Text {
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    TextStyle effectiveTextStyle = style;
-    if (style == null || style.inherit)
+    TextStyle? effectiveTextStyle = style;
+    if (style == null || style!.inherit)
       effectiveTextStyle = defaultTextStyle.style.merge(style);
     if (MediaQuery.boldTextOverride(context))
-      effectiveTextStyle = effectiveTextStyle
+      effectiveTextStyle = effectiveTextStyle!
           .merge(const TextStyle(fontWeight: FontWeight.bold));
     Widget result = RichText(
       textAlign: textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
@@ -160,7 +156,8 @@ class TextResponsive extends Text {
       text: TextSpan(
         style: effectiveTextStyle,
         text: data,
-        children: textSpan != null ? <TextSpan>[textSpan] : null,
+        children: (textSpan != null ? <TextSpan?>[textSpan as TextSpan] : null)
+            as List<InlineSpan>?,
       ),
     );
     if (semanticsLabel != null) {
