@@ -40,7 +40,7 @@ class ResponsiveWidgets {
         BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(360, 690),
+        designSize: Size(width!, height!),
         orientation: Orientation.portrait);
   }
 }
