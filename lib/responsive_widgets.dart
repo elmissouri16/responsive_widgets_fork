@@ -36,11 +36,15 @@ class ResponsiveWidgets {
     double? width,
     bool allowFontScaling = false,
   }) {
+    // ScreenUtil.init(
+    //     BoxConstraints(
+    //         maxWidth: MediaQuery.of(context).size.width,
+    //         maxHeight: MediaQuery.of(context).size.height),
+    //     designSize: Size(width!, height!),
+    //     orientation: Orientation.portrait);
     ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(width!, height!),
-        orientation: Orientation.portrait);
+      context,
+      designSize: Size(width!, height!),
+    );
   }
 }
