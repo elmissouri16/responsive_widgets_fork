@@ -87,7 +87,7 @@ part of '../responsive_widgets.dart';
 ///  * [InkWell], which implements the ink splash part of a flat button.
 ///  * [RawMaterialButton], the widget this widget is based on.
 ///  * <https://material.io/design/components/buttons.html>
-class RaisedButtonResponsive extends RaisedButton {
+class RaisedButtonResponsive extends ElevatedButton {
   /// Create a filled button.
   ///
   /// The [autofocus] and [clipBehavior] arguments must not be null.
@@ -130,65 +130,69 @@ class RaisedButtonResponsive extends RaisedButton {
         super(
           key: key,
           onPressed: onPressed,
-          onHighlightChanged: onHighlightChanged,
-          textTheme: textTheme,
-          textColor: textColor,
-          disabledTextColor: disabledTextColor,
-          color: color,
-          disabledColor: disabledColor,
-          focusColor: focusColor,
-          hoverColor: hoverColor,
-          highlightColor: highlightColor,
-          splashColor: splashColor,
-          colorBrightness: colorBrightness,
-          elevation: elevation,
-          focusElevation: focusElevation,
-          hoverElevation: hoverElevation,
-          highlightElevation: highlightElevation,
-          disabledElevation: disabledElevation,
-          padding: padding,
-          shape: shape,
+          // onHighlightChanged: onHighlightChanged,
+          // textTheme: textTheme,
+          // textColor: textColor,
+          // disabledTextColor: disabledTextColor,
+          // color: color,
+          // disabledColor: disabledColor,
+          // focusColor: focusColor,
+          // hoverColor: hoverColor,
+          // highlightColor: highlightColor,
+          // splashColor: splashColor,
+          // colorBrightness: colorBrightness,
+          // elevation: elevation,
+          // focusElevation: focusElevation,
+          // hoverElevation: hoverElevation,
+          // highlightElevation: highlightElevation,
+          // disabledElevation: disabledElevation,
+          // padding: padding,
+          // shape: shape,
           clipBehavior: clipBehavior,
           focusNode: focusNode,
           autofocus: autofocus,
-          materialTapTargetSize: materialTapTargetSize,
-          animationDuration: animationDuration,
+          // materialTapTargetSize: materialTapTargetSize,
+          // animationDuration: animationDuration,
           child: child,
         );
 
-  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ButtonThemeData buttonTheme = ButtonTheme.of(context);
-    final BoxConstraints boxConstraints = buttonTheme.getConstraints(this);
+    final BoxConstraints boxConstraints =
+        buttonTheme.getConstraints(this as MaterialButton);
     return RawMaterialButton(
       onPressed: onPressed,
-      onHighlightChanged: onHighlightChanged,
+      // onHighlightChanged: onHighlightChanged,
       clipBehavior: clipBehavior,
-      fillColor: buttonTheme.getFillColor(this),
-      textStyle: theme.textTheme.button!
-          .copyWith(color: buttonTheme.getTextColor(this)),
-      focusColor: buttonTheme.getFocusColor(this),
-      hoverColor: buttonTheme.getHoverColor(this),
-      highlightColor: buttonTheme.getHighlightColor(this),
-      splashColor: buttonTheme.getSplashColor(this),
-      elevation: buttonTheme.getElevation(this),
-      focusElevation: buttonTheme.getFocusElevation(this),
-      hoverElevation: buttonTheme.getHoverElevation(this),
-      highlightElevation: buttonTheme.getHighlightElevation(this),
-      disabledElevation: buttonTheme.getDisabledElevation(this),
-      padding: buttonTheme.getPadding(this),
+      fillColor: buttonTheme.getFillColor(this as MaterialButton),
+      textStyle: theme.textTheme.labelLarge!
+          .copyWith(color: buttonTheme.getTextColor(this as MaterialButton)),
+      focusColor: buttonTheme.getFocusColor(this as MaterialButton),
+      hoverColor: buttonTheme.getHoverColor(this as MaterialButton),
+      highlightColor: buttonTheme.getHighlightColor(this as MaterialButton),
+      splashColor: buttonTheme.getSplashColor(this as MaterialButton),
+      elevation: buttonTheme.getElevation(this as MaterialButton),
+      focusElevation: buttonTheme.getFocusElevation(this as MaterialButton),
+      hoverElevation: buttonTheme.getHoverElevation(this as MaterialButton),
+      highlightElevation:
+          buttonTheme.getHighlightElevation(this as MaterialButton),
+      disabledElevation:
+          buttonTheme.getDisabledElevation(this as MaterialButton),
+      padding: buttonTheme.getPadding(this as MaterialButton),
       constraints: BoxConstraints(
         maxHeight: boxConstraints.maxHeight.h,
         maxWidth: boxConstraints.maxWidth.w,
         minHeight: boxConstraints.minHeight.h,
         minWidth: boxConstraints.minWidth.w,
       ),
-      shape: buttonTheme.getShape(this),
+      shape: buttonTheme.getShape(this as MaterialButton),
       focusNode: focusNode,
       autofocus: autofocus,
-      animationDuration: buttonTheme.getAnimationDuration(this),
-      materialTapTargetSize: buttonTheme.getMaterialTapTargetSize(this),
+      animationDuration:
+          buttonTheme.getAnimationDuration(this as MaterialButton),
+      materialTapTargetSize:
+          buttonTheme.getMaterialTapTargetSize(this as MaterialButton),
       child: child,
     );
   }

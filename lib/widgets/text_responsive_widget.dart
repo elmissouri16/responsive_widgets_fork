@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 part of '../responsive_widgets.dart';
 
 class TextResponsive extends Text {
